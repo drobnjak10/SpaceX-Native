@@ -1,12 +1,7 @@
 import React, { useCallback } from "react";
 import {
-  Alert,
-  Button,
-  Linking,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
+  Alert, Linking,
+  StyleSheet, Text, TouchableOpacity
 } from "react-native";
 
 interface IProps {

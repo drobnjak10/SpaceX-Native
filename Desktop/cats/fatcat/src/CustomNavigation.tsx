@@ -1,10 +1,9 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import React from "react";
+import "react-native-gesture-handler";
+import { ICrew } from "./interfaces";
 import CrewMember from "./screens/CrewMember";
 import CrewMembers from "./screens/CrewMembers";
-import "react-native-gesture-handler";
-import React from "react";
-import { ICrew } from "./interfaces";
-
 
 export type RootStackParamList = {
   CrewMembers: undefined;

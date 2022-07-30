@@ -1,15 +1,26 @@
 import * as React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParamList } from '../CustomNavigation';
+import { ICrew } from '../interfaces';
 
-function Crew({id, item}) {
-	const navigation = useNavigation();
+
+interface IProps {
+  item: ICrew;
+  props: StackScreenProps<RootStackParamList, 'CrewMember'> 
+}
+
+function Crew({item, props}: IProps) {
+	const navigation = props.navigation;
+
+  console.log('props', props)
   
   return <View style={styles.card}>
         <View style={styles.content}>
           <Text style={styles.title}>{item.name}</Text>
           <TouchableOpacity style={styles.button} onPress={() =>
-          navigation.navigate('CrewMember', {id: 5, item: item})
+          navigation.navigate('CrewMember', {item: item})
           }>
             <Text style={styles.text}>Read more...</Text>
           </TouchableOpacity>

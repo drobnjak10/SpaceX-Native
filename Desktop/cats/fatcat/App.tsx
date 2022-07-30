@@ -1,23 +1,19 @@
-import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
-//import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import CustomNavigationComponent from './src/CustomNavigation';
-import Home from './src/screens/Home';
-import Rockets from './src/screens/Rockets';
 import NetInfo from "@react-native-community/netinfo";
-import ErrorModal from './src/components/ErrorModal';
-import 'react-native-gesture-handler';
+//import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+import "react-native-gesture-handler";
+import ErrorModal from "./src/components/ErrorModal";
+import CustomNavigationComponent from "./src/CustomNavigation";
+import Home from "./src/screens/Home";
+import Rockets from "./src/screens/Rockets";
 
-
-
-const Tab = createBottomTabNavigator()
-
-
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [isOffline, setOfflineStatus] = React.useState(false);
-    
+
   React.useEffect(() => {
     const removeNetInfoSubscription = NetInfo.addEventListener((state) => {
       const offline = !(state.isConnected && state.isInternetReachable);
@@ -26,16 +22,16 @@ export default function App() {
     return () => removeNetInfoSubscription();
   }, []);
 
-  if(isOffline) {
-    return <ErrorModal visible={true} error={'No internet connection!'} />
+  if (isOffline) {
+    return <ErrorModal visible={true} error={"No internet connection!"} />;
   }
-  
+
   return (
-     <NavigationContainer>
+    <NavigationContainer>
       <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Rockets" component={Rockets} />
-        <Tab.Screen name="CrewMembers" component={CustomNavigationComponent} />
+        <Tab.Screen name="CrewMembersList" component={CustomNavigationComponent} />
       </Tab.Navigator>
     </NavigationContainer>
   );
